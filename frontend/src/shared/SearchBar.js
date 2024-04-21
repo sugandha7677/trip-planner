@@ -5,11 +5,9 @@ import Myselect from './Myselect.js';
 import Select from 'react-select';
 import MakePlanButton from './MakePlanButton.js';
 
-
-
-
 import { BASE_URL } from './../utils/config.js';
 import { useNavigate } from 'react-router-dom';
+
 
 const customStyles = {
     option: provided => ({
@@ -75,30 +73,49 @@ function SearchBar()
         setInputType('text');
     }
 
+
     const locationRef = useRef('');
+    const activityRef = useRef('');
     const startDateRef = useRef('');
     const endDateRef = useRef('');
+    const budgetRef = useRef(0);
     const navigate = useNavigate();
 
-    // const searchHandler = async () =>
-    // {
-    //     const location = locationRef.current.valueOf;
-    //     const startDate = startDateRef.current.valueOf;
-    //     const endDate = endDateRef.current.valueOf;
-    //     //const maxGroupSize = maxGroupSizeRef.current.valueOf
+    const [selectedCurrency, setSelectedCurrency] = useState(null);
+    const [selectedActivity, setSelectedActivity] = useState(null);
 
-    //     if (location === '' || startDate === '' || endDate === '')
-    //     {
-    //         return alert("All fields are required ! ");
-    //     }
+    const handleCurrencyChange = (selectedOption) =>
+    {
+        setSelectedCurrency(selectedOption);
+    };
 
-    //     const res = await fetch(`${BASE_URL}/tours/search/getTourBySearch?city=${location}&startDate=${startDate}&endate=${endDate}`)
-    //     if (!res.ok) alert('something went wrong')
+    const handleActivityChange = (selectedOption) =>
+    {
+        setSelectedActivity(selectedOption);
+    };
 
-    //     const result = await res.json();
 
-    //     navigate(`/tours/search?city=${location}&startdate=${startDate}&enddate=${endDate}`, { state: result.data });
-    // }
+    const searchHandler = async (e) =>
+    {
+        e.preventDefault();
+        const location = locationRef.current.valueOf;
+        const startDate = startDateRef.current.valueOf;
+        const endDate = endDateRef.current.valueOf;
+        const budget =  budgetRef.current.valueOf;
+        const activity = activityRef.current.valueOf;
+
+        if (location === '' || budget === '' || activity === '' || startDate === '' || endDate === '')
+        {
+            return alert("All fields are required ! ");
+        }
+
+        const res = await fetch(`${BASE_URL}/tours/search/getTourBySearch?city=${location}&budget=${budget}&activity=${activity}`)
+        if (!res.ok) alert('something went wrong')
+
+        const result = await res.json();
+
+        navigate(`/tours/search?city=${location}&budget=${budget}&activity=${activity}`, { state: result.data });
+    }
     return (
         <center>
             <Col lg="12" className='tourPlan'>
@@ -143,14 +160,17 @@ function SearchBar()
                                     className='currency'
                                     options={currencies}
                                     placeholder="INR"
+                                    value = {selectedCurrency}
+                                    onChange={handleCurrencyChange}
                                     //clearable={false}
                                     styles={customStyles}
+
                                 />
                             </div>
                             <div lg='3' md='6' sm='12' className="mb-1">
                             {/* <span>  </span> */}
                             <input className="budget" type="number" placeholder='Your maximum budget ?'
-                                ref={locationRef} />
+                                ref={budgetRef} />
                         </div>
                     </FormGroup>
 
@@ -160,8 +180,11 @@ function SearchBar()
                             <Select
                                 options={options}
                                 placeholder="Attractions"
+                                value={selectedActivity}
+                                onChange={handleActivityChange}
                                 //clearable={false}
                                 styles={customStyles}
+
                             />
                         </div>
                     </FormGroup>
@@ -169,7 +192,7 @@ function SearchBar()
                         <div> 
                             <button className="startPlan d-block" type="submit" onClick={searchHandler}>Start Planning</button>
                         </div> */}
-                    <MakePlanButton />
+                    <MakePlanButton  onClick = {searchHandler} />
 
                 </Form>
             </div>
