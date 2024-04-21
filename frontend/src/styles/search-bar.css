@@ -1,0 +1,171 @@
+
+.tourPlan{
+    background: linear-gradient(rgba(110, 108, 108, 0.4), rgba(110, 108, 108, 0.4)),
+            url("../assets/images/tour.jpg") no-repeat center center;
+    padding-left: 0px;
+    padding-bottom: 40px;
+    max-height:max-content;
+}
+.search_bar{
+    /* margin-left: 15rem; */
+    border-radius: 50px;
+    box-shadow: rgba(17, 12, 46, 0.15);
+    width: max-content;
+    margin-top: 50px;
+    
+}
+
+
+.screen-header {
+    text-align: center;
+    display: block;
+    color: black;
+    font-size: 16px;
+    font-family: arial, helvetica, sans-serif;
+    font-weight: normal;
+
+}
+.screen-caption{
+    /* margin-left: 15rem;  */
+    font-family: arial, helvetica, sans-serif;
+    font-weight: normal;
+}
+
+div {
+    display: block;
+}
+
+.screen-title {
+    font-size: 36px;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    /* margin-left: 15rem; */
+}
+input {
+        background: white;
+        border-radius: 5px;
+        height: 50px;
+        color: black;
+        padding-left: 1rem;
+       
+}
+
+.location,  .activities{
+    width:608px;
+}
+
+.budget{
+    width: 442px;
+    height: 62px;
+}
+
+
+
+.activities{
+    height: 50px;
+    color: black;
+  
+    font-family: Arial;
+        font-weight: normal;
+        background: white;
+            border-radius: 5px;
+            border:none;
+}
+
+.currency {
+    width: 150px;
+    /* display: flex;
+    margin-right: 2px;
+    width: 200px;
+    height: 50px; */
+    /* align-items: center; */
+}
+
+.curr_list{
+    height: 200px;
+}
+
+
+
+
+
+.textbox-n{
+    width: 300px;
+}
+
+
+.form_group span{
+    font-size: 1.8rem;
+    color: #ee6e6e;
+}
+
+.form_group input{
+    border: none;
+    font-size: 0.9rem;
+    color: var(--heading-color);
+    font-weight: 500;
+}
+
+.form_group input:focus{
+    outline: none;
+}
+
+.form_group h6{
+    margin-bottom: 0;
+}
+
+.form_group-fast{
+    border-right: 2px solid #ddd;
+}
+
+.search_icon i{
+    font-size: 1.6rem;
+    padding: 0.5rem;
+    background: var(--secondary-color);
+    color: #fff;
+    border-radius: 10px 5px 10px 5px;
+    cursor: pointer;
+}
+
+.startPlan{
+    background: var(--primary-color);
+    border: none;
+    border-radius: 5px;
+    height: 50px;
+    width: 350px;
+    color:white;
+    font-weight: 500;
+    margin-top: 2rem;
+    /* margin-left: 6rem;  */
+    
+}
+
+@media only screen and (max-width: 992px){
+    .search_bar{
+        width: 100%;
+        border-radius: 2rem;
+    }
+    .search_bar form{
+        flex-wrap: wrap;
+    }
+
+    .search_bar form .form_group{
+        width: 48%;
+    }
+}
+
+@media only screen and (max-width: 576px){
+    .search_bar form .form_group{
+        width: 48%;
+    }
+    .form_group input{
+        font-size: 0.7rem;
+    }
+    .form_group span i{
+        font-size: 1.1rem;
+    }
+
+    .form_group h6{
+        font-size: 1rem;
+    }
+}
